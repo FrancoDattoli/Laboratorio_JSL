@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int contarCarbonos(int largCa,char cadena);
+
+int main(){
+
+    int i,largCa,carb,numCar,con;
+    char cadena[1000],pos;
+    FILE * texto = fopen("alcanos.txt","r");
+    if(texto==NULL){
+        printf("No se ha podido abrir el fichero.\n");
+        exit(1);
+    }
+
+    while(feof(texto)==0){
+        fscanf(texto,"%s",&cadena);
+        largCa = strlen(cadena);
+        i = 0;
+        printf("\n");
+        numCar=0;
+        con = 0;
+        while(i<largCa){
+            pos = cadena[i];
+            if ((pos == '3')||(pos == '2')||(pos == '-')){
+                numCar++;
+            }
+            if(pos == '#'){
+                con++;
+            }
+            if (con == 2){
+                numCar--;
+                con=0;
+            }
+            if (i==(largCa-1)){
+                printf("%i",numCar);
+            }
+
+            i++;
+        }
+    }
+
+}
